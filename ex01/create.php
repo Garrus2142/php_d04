@@ -32,7 +32,7 @@
 		$accounts = getAccounts();
 		
 		foreach ($accounts as $account) {
-			if ($_POST['login'] == $account['login']) {
+			if ($_POST['login'] === $account['login']) {
 				$error = TRUE;
 				break;
 			}
