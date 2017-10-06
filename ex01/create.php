@@ -1,6 +1,4 @@
 <?php
-	$salt = 'cdjuQVscPH';
-
 	function getAccounts() {
 		if (file_exists("../private/passwd")) {
 			$content = file_get_contents("../private/passwd");
@@ -14,6 +12,8 @@
 	}
 
 	function createAccount($accounts, $login, $passwd) {
+		$salt = 'cdjuQVscPH';
+
 		if (file_exists("../private") === FALSE)
 			mkdir("../private");
 
