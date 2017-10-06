@@ -14,4 +14,6 @@
 			echo "ERROR\n";
 		}
 	}
+	else
+		echo "ERROR\n";
 ?>
