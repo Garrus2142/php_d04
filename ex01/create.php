@@ -3,7 +3,8 @@
 		if (file_exists("../private/passwd")) {
 			$content = file_get_contents("../private/passwd");
 			if ($content !== FALSE) {
-				return (unserialize($content));
+				$content = unserialize($content);
+				return ($content === FALSE ? array() : $content);
 			}
 			else
 				return (array());

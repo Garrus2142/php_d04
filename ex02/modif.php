@@ -2,22 +2,12 @@
 	$salt = 'cdjuQVscPH';
 
 	function getAccounts() {
-		if (file_exists("../private/passwd")) {
-			$content = file_get_contents("../private/passwd");
-			if ($content !== FALSE) {
-				return (unserialize($content));
-			}
-			else
-				return (array());
+		$content = file_get_contents("../private/passwd");
+		if ($content !== FALSE) {
+			$content = unserialize($content);
+			return ($content === FALSE ? array() : $content);
 		}
 		return (array());
-	}
-
-	function updateAccount($accounts) {
-		if (file_exists("../private") === FALSE) 
-			mkdir("../private");
-
-		file_put_contents("../private/passwd", serialize($accounts));
 	}
 
 	if ($_POST['login'] !== NULL && $_POST['login'] !== ''
@@ -42,7 +32,7 @@
 			echo "ERROR\n";
 		else {
 			$accounts[$found]['passwd'] = hash("whirlpool", $_POST['newpw'].$salt);
-			updateAccount($accounts);
+			file_put_contents("../private/passwd", serialize($accounts));
 			echo "OK\n";
 		}
 	}
